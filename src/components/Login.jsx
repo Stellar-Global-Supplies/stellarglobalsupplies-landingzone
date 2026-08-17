@@ -1,9 +1,20 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { sdk } from '../config/casdoor'
 
 export default function Login() {
-  const handleLogin = () => {
-    sdk.signin_redirect()
-  }
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Handle ?callback= param — store destination for after SSO
+    const params = new URLSearchParams(window.location.search)
+    const callback = params.get('callback')
+    if (callback) sessionStorage.setItem('sso_callback_app', callback)
+
+    // If already logged in, bounce straight to dashboard
+    const token = localStorage.getItem('casdoor_token')
+    if (token) { navigate('/'); return }
+  }, [navigate])
 
   return (
     <div className="login-page">
@@ -12,14 +23,16 @@ export default function Login() {
           <div className="logo-mark large">SGS</div>
         </div>
         <h1 className="login-title">Stellar Global Supplies</h1>
-        <p className="login-sub">Sign in to access your apps</p>
-        <button className="login-btn" onClick={handleLogin}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3" />
+        <p className="login-sub">Sign in to access your applications</p>
+        <button className="login-btn" onClick={() => sdk.signin_redirect()}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="1.5"
+            strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l3 3m0 0l-3 3m3-3H3"/>
           </svg>
           Sign in with SSO
         </button>
-        <p className="login-footer">Powered by Stellar SSO</p>
+        <p className="login-footer">Secured by Stellar SSO · Casdoor</p>
       </div>
     </div>
   )
