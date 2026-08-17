@@ -18,21 +18,29 @@ export default function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('casdoor_token')
-    if (!token) {
-      setLoading(false)
-      return
-    }
+    if (!token) { setLoading(false); return }
 
-    // Decode JWT to get user info (no extra API call needed)
     try {
       const payload = JSON.parse(atob(token.split('.')[1]))
+      // Check token expiry
+      if (payload.exp && payload.exp * 1000 < Date.now()) {
+        localStorage.removeItem('casdoor_token')
+        setLoading(false)
+        return
+      }
       setUser(payload)
-    } catch (e) {
-      // Token invalid — clear it
+    } catch {
       localStorage.removeItem('casdoor_token')
     }
     setLoading(false)
   }, [])
+
+  const handleLogout = () => {
+    // ✅ Fixed: actually clear the token + Casdoor state
+    localStorage.removeItem('casdoor_token')
+    try { sdk.clearState() } catch {}
+    window.location.replace('/login')
+  }
 
   if (loading) {
     return (
@@ -51,7 +59,7 @@ export default function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <Dashboard user={user} />
+              <Dashboard user={user} onLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
@@ -59,3 +67,4 @@ export default function App() {
     </BrowserRouter>
   )
 }
+
