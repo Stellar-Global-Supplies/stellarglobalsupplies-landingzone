@@ -1,30 +1,30 @@
 import Icon from './Icon'
+import { launchApp } from '../utils/ssoLaunch'
 
-export default function AppCard({ app }) {
+/**
+ * Square icon tile — like an OS app launcher.
+ * size: 'lg' (main apps) | 'sm' (supporting apps)
+ */
+export default function AppCard({ app, size = 'sm' }) {
   return (
-    <a
-      href={app.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ textDecoration: 'none' }}
+    <button
+      className={`app-tile app-tile--${size}`}
+      onClick={() => launchApp(app)}
+      title={app.description}
+      disabled={app.url === '#'}
     >
-      <div className="app-card">
-        <div className="app-card-accent" style={{ background: app.color }} />
-        <div className="app-card-body">
-          <div className="app-card-icon" style={{ background: app.color + '18', border: `1px solid ${app.color}30` }}>
-            <Icon name={app.icon} size={22} color={app.color} />
-          </div>
-          <div className="app-card-meta">
-            <span className="app-card-category" style={{ color: app.color }}>{app.category}</span>
-            <h3 className="app-card-name">{app.name}</h3>
-            <p className="app-card-desc">{app.description}</p>
-          </div>
-          <div className="app-card-launch">
-            <span>Open</span>
-            <Icon name="scan" size={14} color="#94A3B8" />
-          </div>
-        </div>
+      <div
+        className="app-tile__icon"
+        style={{
+          background: `${app.color}18`,
+          border: `1.5px solid ${app.color}35`,
+        }}
+      >
+        <Icon name={app.icon} size={size === 'lg' ? 28 : 22} color={app.color} />
       </div>
-    </a>
+      <span className="app-tile__name">{app.name}</span>
+      {app.url === '#' && <span className="app-tile__badge">Soon</span>}
+    </button>
   )
 }
+
