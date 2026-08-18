@@ -46,6 +46,15 @@ export const APPS = [
     icon: 'box',
     isMain: false,
   },
+  {
+    id: 'scan',
+    name: 'SGS Advertise',
+    description: 'SGS Native Advertising Campaign Platform ',
+    url: import.meta.env.VITE_OPS_URL || 'https://advertise.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
   // ── SUPPORTING TOOLS ───────────────────────────────────────
   // Add more apps here:
   // {
