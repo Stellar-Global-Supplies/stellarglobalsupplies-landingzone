@@ -47,7 +47,7 @@ export const APPS = [
     isMain: false,
   },
   {
-    id: 'scan',
+    id: 'advertise',
     name: 'SGS Advertise',
     description: 'SGS Native Advertising Campaign Platform ',
     url: import.meta.env.VITE_OPS_URL || 'https://advertise.stellarglobalsupplies.com',
