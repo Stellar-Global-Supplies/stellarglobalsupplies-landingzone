@@ -19,6 +19,15 @@ export const APPS = [
     icon: 'box',
     isMain: true,
   },
+  {
+    id: 'quote',
+    name: 'SGS Quote Generator',
+    description: 'SGS Native Quotation Generator',
+    url: import.meta.env.VITE_OPS_URL || 'https://quote.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
   // ── SUPPORTING TOOLS ───────────────────────────────────────
   // Add more apps here:
   // {
