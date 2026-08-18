@@ -28,6 +28,24 @@ export const APPS = [
     icon: 'box',
     isMain: true,
   },
+  {
+    id: 'workflow',
+    name: 'SGS Workflows',
+    description: 'SGS Native Workflow which generates leads, runs tech jobs, publish blogs and post on social media',
+    url: import.meta.env.VITE_OPS_URL || 'https://workflow.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
+  {
+    id: 'scan',
+    name: 'SGS Scan ',
+    description: 'SGS Native Vulnerability Scanning and Code Quality Control Platform',
+    url: import.meta.env.VITE_OPS_URL || 'https://scan.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: false,
+  },
   // ── SUPPORTING TOOLS ───────────────────────────────────────
   // Add more apps here:
   // {
