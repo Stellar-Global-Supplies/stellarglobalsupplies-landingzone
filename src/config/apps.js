@@ -55,6 +55,33 @@ export const APPS = [
     icon: 'box',
     isMain: true,
   },
+  {
+    id: 'orders',
+    name: 'SGS Order Management System',
+    description: 'SGS Native Order Management and Tracking Platform ',
+    url: import.meta.env.VITE_OPS_URL || 'https://orders.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
+  {
+    id: 'security',
+    name: 'SGS Security',
+    description: 'SGS Native Security Tracking and Scanning Platform ',
+    url: import.meta.env.VITE_OPS_URL || 'https://security.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
+  {
+    id: 'testing',
+    name: 'SGS Testing',
+    description: 'SGS Native Testing Platform ',
+    url: import.meta.env.VITE_OPS_URL || 'https://tests.stellarglobalsupplies.com',
+    color: '#3B82F6',
+    icon: 'box',
+    isMain: true,
+  },
   // ── SUPPORTING TOOLS ───────────────────────────────────────
   // Add more apps here:
   // {
