@@ -71,7 +71,7 @@ export const APPS = [
     url: import.meta.env.VITE_OPS_URL || 'https://security.stellarglobalsupplies.com',
     color: '#3B82F6',
     icon: 'box',
-    isMain: true,
+    isMain: false,
   },
   {
     id: 'testing',
@@ -80,7 +80,7 @@ export const APPS = [
     url: import.meta.env.VITE_OPS_URL || 'https://tests.stellarglobalsupplies.com',
     color: '#3B82F6',
     icon: 'box',
-    isMain: true,
+    isMain: false,
   },
   // ── SUPPORTING TOOLS ───────────────────────────────────────
   // Add more apps here:
