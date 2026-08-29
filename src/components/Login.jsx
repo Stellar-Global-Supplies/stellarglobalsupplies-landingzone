@@ -11,9 +11,23 @@ export default function Login() {
     const callback = params.get('callback')
     if (callback) sessionStorage.setItem('sso_callback_app', callback)
 
-    // If already logged in, bounce straight to dashboard
+    // If already logged in, forward straight back to whichever app
+    // sent us here (if any) instead of discarding the pending callback.
     const token = localStorage.getItem('casdoor_token')
-    if (token) { navigate('/'); return }
+    if (token) {
+      const pendingCallback = sessionStorage.getItem('sso_callback_app')
+      if (pendingCallback) {
+        sessionStorage.removeItem('sso_callback_app')
+        const callbackUrl = new URL('/sso-callback', pendingCallback)
+        callbackUrl.searchParams.set('token', token)
+        callbackUrl.searchParams.set('redirect', '/')
+        callbackUrl.searchParams.set('ts', Date.now())
+        window.location.href = callbackUrl.toString()
+        return
+      }
+      navigate('/')
+      return
+    }
   }, [navigate])
 
   return (
