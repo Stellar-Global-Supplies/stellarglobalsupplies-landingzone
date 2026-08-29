@@ -34,8 +34,8 @@ export const APPS = [
   },
   {
     id: 'bills', name: 'Stellar Bills', description: 'SGS Native Bill Creation and Printing Platform',
-    url: import.meta.env.VITE_STELLARAI_URL || 'https://bills.stellarglobalsupplies.com',
-    color: '#A855F7', icon: 'brain', isMain: true,
+    url: import.meta.env.VITE_BILLS_URL || 'https://bills.stellarglobalsupplies.com',
+    color: '#00B98E', icon: 'box', isMain: true,
   },
 
   // ── SUPPORTING TOOLS ───────────────────────────────────────
